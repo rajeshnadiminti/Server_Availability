@@ -1,3 +1,4 @@
+sudo: required
 language: python
 os: windows
 
@@ -22,8 +23,6 @@ before_install:
     
     
 cache: pip
-  
-sudo: false
 
 deploy:
   provider: pages
