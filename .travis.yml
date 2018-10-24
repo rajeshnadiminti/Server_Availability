@@ -8,6 +8,7 @@ install:
   - pip install requests
   
 before_install:
+   - sudo apt-get update && sudo apt-get --reinstall install -qq language-pack-en language-pack-de
     # Tricks to avoid matplotlib error about X11:
     # 'no display name and no $DISPLAY environment variable'
     # http://docs.travis-ci.com/user/gui-and-headless-browsers/#Starting-a-Web-Server
