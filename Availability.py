@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('Agg')
 import requests
 import time
 import smtplib
@@ -7,6 +5,13 @@ from smtplib import SMTPException
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
+import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
+import matplotlib.pyplot as plt
+
 
 def clicked():
     global url, s
