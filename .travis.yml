@@ -1,6 +1,6 @@
 sudo: false
+
 language: python
-os: windows
 
 python:
   - "3.6"
@@ -9,6 +9,7 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install requests
+  - pip install pyinstaller
   
 before_install:
    - sudo apt-get update && sudo apt-get --reinstall install -qq language-pack-en language-pack-de
@@ -25,12 +26,15 @@ before_install:
 cache: pip
 
 deploy:
-  - provider: pages
-  - skip-cleanup: true
-  - github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  - keep-history: true
- on:
-  branch: master
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master
 
 script:
   - python Availability.py
+
+after_deploy:
+  pyinstaller Availability.py --onefile
