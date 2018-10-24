@@ -1,10 +1,3 @@
-import requests
-import time
-import smtplib
-from smtplib import SMTPException
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox
 import os
 import matplotlib as mpl
 if os.environ.get('DISPLAY','') == '':
@@ -12,6 +5,13 @@ if os.environ.get('DISPLAY','') == '':
     mpl.use('Agg')
 import matplotlib.pyplot as plt
 
+import requests
+import time
+import smtplib
+from smtplib import SMTPException
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
 
 def clicked():
     global url, s
