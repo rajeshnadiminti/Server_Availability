@@ -1,7 +1,4 @@
-sudo: false
-
 language: python
-
 python:
   - "3.6"
 
@@ -12,18 +9,22 @@ install:
   - pip install pyinstaller
   
 before_install:
-   - sudo apt-get update && sudo apt-get --reinstall install -qq language-pack-en language-pack-de
     # Tricks to avoid matplotlib error about X11:
     # 'no display name and no $DISPLAY environment variable'
     # http://docs.travis-ci.com/user/gui-and-headless-browsers/#Starting-a-Web-Server
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
     # Get Pandoc
-    #- wget https://github.com/jgm/pandoc/releases/download/1.15.1/pandoc-1.15.1-1-amd64.deb
-    #- sudo dpkg -i pandoc-1.15.1-1-amd64.deb
+    - wget https://github.com/jgm/pandoc/releases/download/1.15.1/pandoc-1.15.1-1-amd64.deb
+    - sudo dpkg -i pandoc-1.15.1-1-amd64.deb
     
     
 cache: pip
+
+script:
+  - python Availability.py
+  
+sudo: false
 
 deploy:
   provider: pages
@@ -32,9 +33,3 @@ deploy:
   keep-history: true
   on:
     branch: master
-
-script:
-  - python Availability.py
-
-after_deploy:
-  pyinstaller Availability.py --onefile
