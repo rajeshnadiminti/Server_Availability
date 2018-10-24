@@ -6,8 +6,6 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 
-Print ("Hello...!")
-
 def clicked():
     global url, s
     s = url.get()
